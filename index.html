@@ -95,17 +95,17 @@
     </p>
 
     <h2 id="contact-title">Formularz kontaktowy</h2>
-    <form action="https://formspree.io/f/mgvlvevw" method="POST">
-      <label for="name">Imię:</label>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="name" id="label-name">Imię:</label>
       <input type="text" name="name" id="name" required>
 
-      <label for="email">Email:</label>
+      <label for="email" id="label-email">Email:</label>
       <input type="email" name="email" id="email" required>
 
-      <label for="message">Wiadomość:</label>
+      <label for="message" id="label-message">Wiadomość:</label>
       <textarea name="message" id="message" rows="5" required></textarea>
 
-      <button type="submit">Wyślij</button>
+      <button type="submit" id="btn-submit">Wyślij</button>
     </form>
   </main>
 
@@ -118,22 +118,38 @@
       pl: {
         title: "Witaj na mojej stronie!",
         content: "To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.",
-        contact: "Formularz kontaktowy"
+        contact: "Formularz kontaktowy",
+        name: "Imię:",
+        email: "Email:",
+        message: "Wiadomość:",
+        submit: "Wyślij"
       },
       en: {
         title: "Welcome to my website!",
         content: "This is a sample page in English. Click the flags above to change the language.",
-        contact: "Contact form"
+        contact: "Contact form",
+        name: "Name:",
+        email: "Email:",
+        message: "Message:",
+        submit: "Send"
       },
       ru: {
         title: "Добро пожаловать на мой сайт!",
         content: "Это пример страницы на русском языке. Нажмите флаги выше, чтобы изменить язык.",
-        contact: "Форма для связи"
+        contact: "Форма для связи",
+        name: "Имя:",
+        email: "Эл. почта:",
+        message: "Сообщение:",
+        submit: "Отправить"
       },
       hi: {
         title: "मेरी वेबसाइट पर आपका स्वागत है!",
         content: "यह हिंदी में एक उदाहरण पृष्ठ है। भाषा बदलने के लिए ऊपर दिए गए झंडों पर क्लिक करें।",
-        contact: "संपर्क फ़ॉर्म"
+        contact: "संपर्क फ़ॉर्म",
+        name: "नाम:",
+        email: "ईमेल:",
+        message: "संदेश:",
+        submit: "भेजें"
       }
     };
 
@@ -141,6 +157,10 @@
       document.getElementById("title").innerText = translations[lang].title;
       document.getElementById("content").innerText = translations[lang].content;
       document.getElementById("contact-title").innerText = translations[lang].contact;
+      document.getElementById("label-name").innerText = translations[lang].name;
+      document.getElementById("label-email").innerText = translations[lang].email;
+      document.getElementById("label-message").innerText = translations[lang].message;
+      document.getElementById("btn-submit").innerText = translations[lang].submit;
     }
   </script>
 </body>
