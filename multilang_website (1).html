@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moja Strona</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      text-align: center;
+    }
+    header {
+      background: #0077cc;
+      color: white;
+      padding: 1rem;
+    }
+    nav img {
+      width: 32px;
+      height: 22px;
+      margin: 0 5px;
+      cursor: pointer;
+      border: 1px solid #fff;
+      border-radius: 3px;
+    }
+    nav img:hover {
+      opacity: 0.8;
+    }
+    main {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    footer {
+      background: #eee;
+      padding: 1rem;
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    form {
+      margin-top: 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    form label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    form button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #0077cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Witaj na mojej stronie!</h1>
+    <nav>
+      <img src="https://flagcdn.com/w20/pl.png" alt="PL" onclick="setLang('pl')">
+      <img src="https://flagcdn.com/w20/gb.png" alt="EN" onclick="setLang('en')">
+      <img src="https://flagcdn.com/w20/ru.png" alt="RU" onclick="setLang('ru')">
+      <img src="https://flagcdn.com/w20/in.png" alt="HI" onclick="setLang('hi')">
+    </nav>
+  </header>
+
+  <main>
+    <p id="content">
+      To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.
+    </p>
+
+    <h2 id="contact-title">Formularz kontaktowy</h2>
+    <form action="https://formspree.io/f/your-form-id" method="POST">
+      <label for="name">Imię:</label>
+      <input type="text" name="name" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required>
+
+      <label for="message">Wiadomość:</label>
+      <textarea name="message" id="message" rows="5" required></textarea>
+
+      <button type="submit">Wyślij</button>
+    </form>
+  </main>
+
+  <footer>
+    © 2025 Moja Strona
+  </footer>
+
+  <script>
+    const translations = {
+      pl: {
+        title: "Witaj na mojej stronie!",
+        content: "To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.",
+        contact: "Formularz kontaktowy"
+      },
+      en: {
+        title: "Welcome to my website!",
+        content: "This is a sample page in English. Click the flags above to change the language.",
+        contact: "Contact form"
+      },
+      ru: {
+        title: "Добро пожаловать на мой сайт!",
+        content: "Это пример страницы на русском языке. Нажмите флаги выше, чтобы изменить язык.",
+        contact: "Форма для связи"
+      },
+      hi: {
+        title: "मेरी वेबसाइट पर आपका स्वागत है!",
+        content: "यह हिंदी में एक उदाहरण पृष्ठ है। भाषा बदलने के लिए ऊपर दिए गए झंडों पर क्लिक करें।",
+        contact: "संपर्क फ़ॉर्म"
+      }
+    };
+
+    function setLang(lang) {
+      document.getElementById("title").innerText = translations[lang].title;
+      document.getElementById("content").innerText = translations[lang].content;
+      document.getElementById("contact-title").innerText = translations[lang].contact;
+    }
+  </script>
+</body>
+</html>
