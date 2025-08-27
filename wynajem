@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wynajem - Moja Strona</title>
+<link rel="stylesheet" href="style.css">
+<script src="rent.js" defer></script>
+</head>
+<body>
+<header>
+<h1>Oferta Wynajmu</h1>
+<nav>
+<a href="index.html">Główna</a>
+<a href="rent.html">Wynajem</a>
+<a href="contact.html">Kontakt</a>
+</nav>
+</header>
+<main>
+<form id="rent-form">
+<label>Imię:<input type="text" required></label>
+<label>Numer telefonu:<input type="text" required></label>
+<label>Email (opcjonalnie):<input type="email"></label>
+<label>Baterie:
+<select id="batteries">
+<option value="1">1 bateria - 150 zł/tygodniowo</option>
+<option value="2">2 baterie - 200 zł/tygodniowo</option>
+<option value="3">3 baterie - 275 zł/tygodniowo</option>
+</select>
+</label>
+<label>Ładowarki:
+<select id="chargers">
+<option value="1">1 - 0 zł</option>
+<option value="2">2 - dodatkowe 10 zł/tygodniowo</option>
+</select>
+</label>
+<div id="total">Łączna cena: 150 zł</div>
+</form>
+</main>
+<footer>© 2025 Moja Strona</footer>
+</body>
+</html>
+```
