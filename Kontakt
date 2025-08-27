@@ -1,0 +1,25 @@
+```html
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kontakt - Moja Strona</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>Kontakt</h1>
+<nav>
+<a href="index.html">Główna</a>
+<a href="rent.html">Wynajem</a>
+<a href="contact.html">Kontakt</a>
+</nav>
+</header>
+<main>
+<p>Strona kontaktowa (bez formularza wynajmu).</p>
+</main>
+<footer>© 2025 Moja Strona</footer>
+</body>
+</html>
+```
