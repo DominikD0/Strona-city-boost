@@ -18,6 +18,9 @@
       color: white;
       padding: 1rem;
     }
+    nav {
+      margin-top: 0.5rem;
+    }
     nav img {
       width: 32px;
       height: 22px;
@@ -28,6 +31,15 @@
     }
     nav img:hover {
       opacity: 0.8;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
     }
     main {
       padding: 2rem;
@@ -52,29 +64,20 @@
       margin-right: auto;
       text-align: left;
     }
-    form label {
+    form label, form select, form input {
       display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    form input, form textarea {
       width: 100%;
+      margin-top: 10px;
+    }
+    form input, form select {
       padding: 8px;
-      margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    form button {
+    #total {
       margin-top: 15px;
-      padding: 10px 20px;
-      background: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    form button:hover {
-      background: #005fa3;
+      font-weight: bold;
+      font-size: 1.2rem;
     }
   </style>
 </head>
@@ -82,31 +85,58 @@
   <header>
     <h1 id="title">Witaj na mojej stronie!</h1>
     <nav>
-      <img src="https://flagcdn.com/w20/pl.png" alt="PL" onclick="setLang('pl')">
-      <img src="https://flagcdn.com/w20/gb.png" alt="EN" onclick="setLang('en')">
-      <img src="https://flagcdn.com/w20/ru.png" alt="RU" onclick="setLang('ru')">
-      <img src="https://flagcdn.com/w20/in.png" alt="HI" onclick="setLang('hi')">
+      <a href="#" onclick="showPage('home')" id="nav-home">Główna</a>
+      <a href="#" onclick="showPage('rent')" id="nav-rent">Wynajem</a>
+      <a href="#" onclick="showPage('contact')" id="nav-contact">Kontakt</a>
+      <div style="margin-top:10px;">
+        <img src="https://flagcdn.com/w20/pl.png" alt="PL" onclick="setLang('pl')">
+        <img src="https://flagcdn.com/w20/gb.png" alt="EN" onclick="setLang('en')">
+        <img src="https://flagcdn.com/w20/ru.png" alt="RU" onclick="setLang('ru')">
+        <img src="https://flagcdn.com/w20/in.png" alt="HI" onclick="setLang('hi')">
+      </div>
     </nav>
   </header>
 
   <main>
-    <p id="content">
-      To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.
-    </p>
+    <section id="page-home">
+      <p id="content">To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.</p>
+    </section>
 
-    <h2 id="contact-title">Formularz kontaktowy</h2>
-    <form action="https://formspree.io/f/your-form-id" method="POST">
-      <label for="name" id="label-name">Imię:</label>
-      <input type="text" name="name" id="name" required>
+    <section id="page-rent" style="display:none;">
+      <h2 id="rent-title">Oferta Wynajmu</h2>
+      <p id="rent-content">Wypełnij formularz poniżej, aby wynająć sprzęt.</p>
 
-      <label for="email" id="label-email">Email:</label>
-      <input type="email" name="email" id="email" required>
+      <form id="rent-form">
+        <label for="name" id="label-name">Imię:</label>
+        <input type="text" id="name" name="name" required>
 
-      <label for="message" id="label-message">Wiadomość:</label>
-      <textarea name="message" id="message" rows="5" required></textarea>
+        <label for="phone" id="label-phone">Numer telefonu:</label>
+        <input type="text" id="phone" name="phone" required>
 
-      <button type="submit" id="btn-submit">Wyślij</button>
-    </form>
+        <label for="email" id="label-email">Email (opcjonalnie):</label>
+        <input type="email" id="email" name="email">
+
+        <label for="batteries" id="label-batteries">Baterie:</label>
+        <select id="batteries" name="batteries" onchange="updatePrice()">
+          <option value="1">1 bateria - 150 zł/tygodniowo</option>
+          <option value="2">2 baterie - 200 zł/tygodniowo</option>
+          <option value="3">3 baterie - 275 zł/tygodniowo</option>
+        </select>
+
+        <label for="chargers" id="label-chargers">Ładowarki:</label>
+        <select id="chargers" name="chargers" onchange="updatePrice()">
+          <option value="1">1 - 0 zł</option>
+          <option value="2">2 - dodatkowe 10 zł/tygodniowo</option>
+        </select>
+
+        <div id="total">Łączna cena: 150 zł</div>
+      </form>
+    </section>
+
+    <section id="page-contact" style="display:none;">
+      <h2 id="contact-title">Kontakt</h2>
+      <p>Strona kontaktowa (bez formularza wynajmu).</p>
+    </section>
   </main>
 
   <footer>
@@ -118,50 +148,47 @@
       pl: {
         title: "Witaj na mojej stronie!",
         content: "To jest przykładowa strona w języku polskim. Kliknij flagi powyżej, aby zmienić język.",
-        contact: "Formularz kontaktowy",
-        name: "Imię:",
-        email: "Email:",
-        message: "Wiadomość:",
-        submit: "Wyślij"
+        rentTitle: "Oferta Wynajmu",
+        rentContent: "Wypełnij formularz poniżej, aby wynająć sprzęt.",
+        contact: "Kontakt",
+        labelName: "Imię:",
+        labelPhone: "Numer telefonu:",
+        labelEmail: "Email (opcjonalnie):",
+        labelBatteries: "Baterie:",
+        labelChargers: "Ładowarki:",
+        optionBattery1: "1 bateria - 150 zł/tygodniowo",
+        optionBattery2: "2 baterie - 200 zł/tygodniowo",
+        optionBattery3: "3 baterie - 275 zł/tygodniowo",
+        optionCharger1: "1 - 0 zł",
+        optionCharger2: "2 - dodatkowe 10 zł/tygodniowo",
+        totalPrice: "Łączna cena:",
+        navHome: "Główna",
+        navRent: "Wynajem",
+        navContact: "Kontakt"
       },
       en: {
         title: "Welcome to my website!",
         content: "This is a sample page in English. Click the flags above to change the language.",
-        contact: "Contact form",
-        name: "Name:",
-        email: "Email:",
-        message: "Message:",
-        submit: "Send"
+        rentTitle: "Rental Offer",
+        rentContent: "Fill out the form below to rent equipment.",
+        contact: "Contact",
+        labelName: "Name:",
+        labelPhone: "Phone number:",
+        labelEmail: "Email (optional):",
+        labelBatteries: "Batteries:",
+        labelChargers: "Chargers:",
+        optionBattery1: "1 battery - 150 PLN/week",
+        optionBattery2: "2 batteries - 200 PLN/week",
+        optionBattery3: "3 batteries - 275 PLN/week",
+        optionCharger1: "1 - 0 PLN",
+        optionCharger2: "2 - additional 10 PLN/week",
+        totalPrice: "Total price:",
+        navHome: "Home",
+        navRent: "Rent",
+        navContact: "Contact"
       },
       ru: {
         title: "Добро пожаловать на мой сайт!",
         content: "Это пример страницы на русском языке. Нажмите флаги выше, чтобы изменить язык.",
-        contact: "Форма для связи",
-        name: "Имя:",
-        email: "Эл. почта:",
-        message: "Сообщение:",
-        submit: "Отправить"
-      },
-      hi: {
-        title: "मेरी वेबसाइट पर आपका स्वागत है!",
-        content: "यह हिंदी में एक उदाहरण पृष्ठ है। भाषा बदलने के लिए ऊपर दिए गए झंडों पर क्लिक करें।",
-        contact: "संपर्क फ़ॉर्म",
-        name: "नाम:",
-        email: "ईमेल:",
-        message: "संदेश:",
-        submit: "भेजें"
-      }
-    };
-
-    function setLang(lang) {
-      document.getElementById("title").innerText = translations[lang].title;
-      document.getElementById("content").innerText = translations[lang].content;
-      document.getElementById("contact-title").innerText = translations[lang].contact;
-      document.getElementById("label-name").innerText = translations[lang].name;
-      document.getElementById("label-email").innerText = translations[lang].email;
-      document.getElementById("label-message").innerText = translations[lang].message;
-      document.getElementById("btn-submit").innerText = translations[lang].submit;
-    }
-  </script>
-</body>
-</html>
+        rentTitle: "Предложение аренды",
+        rentContent: "Заполните форму ниже, чтобы аренд
